@@ -1,17 +1,13 @@
 import java.util.Scanner;
 
-public class FuncaoFatorial {
+public class Domino {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        int finalValue = 1;
 
-        for (int i = n; i > 1; i--) {
-            finalValue *= i;
-        }
+        System.out.println(((n+1)*(n+2))/2);
 
-        System.out.println(finalValue);
         sc.close();
     }
 }
