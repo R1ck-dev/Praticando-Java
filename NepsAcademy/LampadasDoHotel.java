@@ -10,16 +10,17 @@ public class LampadasDoHotel {
         int fB = sc.nextInt();
         int count = 0;
 
-        if (fB != iB) {
+        if (iA != fA) {
             count++;
-            if (iA == 0) {
-                fA = 1;
-            } else {
-                fA = 0;
+        } else if (iB != fB) {
+            count++;
+
+            iA = (iA == 0) ? 1 : 0;
+            
+            if (iA != fA) {
+                count++;
             }
         }
-
-        if (fA != iA) count++;
 
         System.out.println(count);
         sc.close();
