@@ -8,7 +8,8 @@ public class Permanente extends Produto {
 
     }
 
-    public Permanente(Double percDesvalorizacao, boolean escritorio) {
+    public Permanente(Integer codigo, String descricao, Double valorUnit, Double percDesvalorizacao, boolean escritorio) {
+        super(codigo, descricao, valorUnit);
         this.percDesvalorizacao = percDesvalorizacao;
         this.escritorio = escritorio;
     }

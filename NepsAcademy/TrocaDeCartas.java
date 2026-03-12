@@ -1,48 +1,40 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Scanner;
-//TODO
+import java.util.Set;
+
 public class TrocaDeCartas {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int a = sc.nextInt();
-        int b = sc.nextInt();
+        int A = sc.nextInt();
+        int B = sc.nextInt();
 
-        List<Integer> aList = new ArrayList<>();
-        List<Integer> bList = new ArrayList<>();
+        Set<Integer> setAlice = new HashSet<>();
+        Set<Integer> setBeatriz = new HashSet<>();
 
-        for (int i = 0; i < a; i++) {
-            aList.add(sc.nextInt());
+        for (int i = 0; i < A; i++) {
+            setAlice.add(sc.nextInt());
+        }
+        for (int i = 0; i < B; i++) {
+            setBeatriz.add(sc.nextInt());
         }
 
-        for (int i = 0; i < b; i++) {
-            bList.add(sc.nextInt());
-        }
+        int ganhoAlice = 0;
+        int ganhoBeatriz = 0;
 
-        int count = 0;
-
-        List<Integer> bigList = new ArrayList<>();
-        List<Integer> smallList = new ArrayList<>();
-
-        if (aList.size() > bList.size()) {
-            bigList = aList;
-            smallList = bList;
-        } else {
-            bigList = bList;
-            smallList = aList;
-        }
-
-        for (int i = 0; i < smallList.size(); i++) {
-            if (!bigList.contains(smallList.get(i))) {
-                count++;
-            }
-            if (count == 4) {
-                break;
+        for (Integer carta : setAlice) {
+            if (!setBeatriz.contains(carta)) {
+                ganhoAlice++;
             }
         }
 
-        System.out.println(count);
+        for (Integer carta : setBeatriz) {
+            if (!setAlice.contains(carta)) {
+                ganhoBeatriz++;
+            }
+        }
+
+        System.out.println(Math.min(ganhoAlice, ganhoBeatriz));
 
         sc.close();
     }

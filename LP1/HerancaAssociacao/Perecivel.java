@@ -8,7 +8,8 @@ public class Perecivel extends Produto {
 
     }
 
-    public Perecivel(String dataValidade, String cidadeOrigem) {
+    public Perecivel(Integer codigo, String descricao, Double valorUnit, String dataValidade, String cidadeOrigem) {
+        super(codigo, descricao, valorUnit);
         this.dataValidade = dataValidade;
         this.cidadeOrigem = cidadeOrigem;
     }
