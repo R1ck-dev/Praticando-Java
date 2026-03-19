@@ -1,19 +1,22 @@
 package LP1.Condominio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Apartamento {
     private Integer andar;
     private Integer numero;
     private Boolean cobertura;
-    private Morador morador;
+    private List<Morador> morador;
 
     public Apartamento() {
     }
 
-    public Apartamento(Integer andar, Integer numero, Boolean cobertura, Morador morador) {
+    public Apartamento(Integer andar, Integer numero, Boolean cobertura) {
         this.andar = andar;
         this.numero = numero;
         this.cobertura = cobertura;
-        this.morador = morador;
+        this.morador = new ArrayList<>();
     }
 
     public Integer getAndar() {
@@ -40,11 +43,19 @@ public class Apartamento {
         this.cobertura = cobertura;
     }
 
-    public Morador getMorador() {
-        return morador;
+    public Morador getMorador(int indice) {
+        return this.morador.get(indice);
     }
 
     public void setMorador(Morador morador) {
-        this.morador = morador;
+        this.morador.add(morador);
+    }
+
+    public void setMoradores(List<Morador> moradores) {
+        this.morador = moradores;
+    }
+
+    public void delMorador(Morador morador) {
+        this.morador.remove(morador);
     }
 }

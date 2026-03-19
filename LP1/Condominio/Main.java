@@ -2,38 +2,44 @@ package LP1.Condominio;
 
 public class Main {
     public static void main(String[] args) {
+        Morador morador1 = new Morador("Henrique", 22, true);
+        Morador morador2 = new Morador("Lucas", 21, false);
 
-        Condominio oCondominio = new Condominio();
+        Apartamento apto1 = new Apartamento(4, 42, false);
+        apto1.setMorador(morador1);
+        apto1.setMorador(morador2);
 
-        oCondominio.setEndereco("Rua Procopio");
-        oCondominio.setNumero(407);
-        oCondominio.setConstrutora("Construtora Albuquerque");
+        Apartamento aptoCobertura = new Apartamento(10, 101, true);
 
-        oCondominio.setBloco(new Bloco(1, "Bloco A", new Apartamento(2, 407, false, new Morador("João", 30, true))));
+        Bloco blocoA = new Bloco(1, "Bloco das Águas");
+        blocoA.setApartamento(apto1);
+        blocoA.setApartamento(aptoCobertura);
 
-        System.out.println("====Dados do Condominio====");
-        System.out.println("Endereco do condominio:" + oCondominio.getEndereco());
-        System.out.println("Número:" + oCondominio.getNumero());
-        System.out.println("Construtora:" + oCondominio.getConstrutora());
-        System.out.println();
+        Condominio condominio = new Condominio("Rua Nova, Centro - Salto", 300, "Construtora Confiança");
+        condominio.setBloco(blocoA);
 
-        System.out.println("====Dados do Bloco====");
-        System.out.println("Número do bloco:" + oCondominio.getBloco().getNumero());
-        System.out.println("Apelido do bloco:" + oCondominio.getBloco().getApelido());
-        System.out.println();
+        System.out.println("=== DADOS DO CONDOMÍNIO ===");
+        System.out.println("Endereço: " + condominio.getEndereco() + ", Nº " + condominio.getNumero());
+        System.out.println("Construtora: " + condominio.getConstrutora());
 
-        System.out.println("====Dados do Apartamento====");
-        System.out.println("Numero de andares:" + oCondominio.getBloco().getApartamento().getAndar());
-        System.out.println("Numero de numero:" + oCondominio.getBloco().getApartamento().getNumero());
-        String cobertura = ( (oCondominio.getBloco().getApartamento().getCobertura() == true) ? "Sim" : "Não");
-        System.out.println("Cobertura:" + cobertura);
-        System.out.println();
+        Bloco blocoRecuperado = condominio.getBloco(0);
+        System.out.println("\n--- Bloco: " + blocoRecuperado.getApelido() + " (Nº " + blocoRecuperado.getNumero() + ") ---");
 
-        System.out.println("====Dados do Morador====");
-        System.out.println("Nome do Morador:" + oCondominio.getBloco().getApartamento().getMorador().getNome());
-        System.out.println("Idade do Morador:" + oCondominio.getBloco().getApartamento().getMorador().getIdade());
-        String responsavel = ( (oCondominio.getBloco().getApartamento().getMorador().getResp() == true) ? "Sim" : "Não");
-        System.out.println("Responsavel:" + responsavel);
-        System.out.println();
+        Apartamento aptoRecuperado = blocoRecuperado.getApartamento(0);
+        System.out.println("Apartamento " + aptoRecuperado.getNumero() + " | Andar: " + aptoRecuperado.getAndar());
+        System.out.println("É cobertura? " + (aptoRecuperado.getCobertura() ? "Sim" : "Não"));
+
+        System.out.println("\nMoradores do Apto " + aptoRecuperado.getNumero() + ":");
+        Morador m1 = aptoRecuperado.getMorador(0);
+        Morador m2 = aptoRecuperado.getMorador(1);
+        
+        System.out.println("- " + m1.getNome() + ", Idade: " + m1.getIdade() + " (Responsável: " + (m1.getResp() ? "Sim" : "Não") + ")");
+        System.out.println("- " + m2.getNome() + ", Idade: " + m2.getIdade() + " (Responsável: " + (m2.getResp() ? "Sim" : "Não") + ")");
+        
+        System.out.println("\n=== TESTANDO EXCLUSÃO ===");
+        aptoRecuperado.delMorador(m2);
+        System.out.println("Morador " + m2.getNome() + " removido.");
+        
+        System.out.println("Morador restante: " + aptoRecuperado.getMorador(0).getNome());
     }
 }

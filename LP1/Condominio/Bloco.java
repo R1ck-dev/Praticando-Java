@@ -1,17 +1,17 @@
 package LP1.Condominio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bloco {
     private Integer numero;
     private String apelido;
-    private Apartamento apartamento;
+    private List<Apartamento> apartamento;
 
-    public Bloco() {
-    }
-
-    public Bloco(Integer numero, String apelido, Apartamento apartamento) {
+    public Bloco(Integer numero, String apelido) {
         this.numero = numero;
         this.apelido = apelido;
-        this.apartamento = apartamento;
+        this.apartamento = new ArrayList<>();
     }
 
     public Integer getNumero() {
@@ -30,11 +30,20 @@ public class Bloco {
         this.apelido = apelido;
     }
 
-    public Apartamento getApartamento() {
-        return apartamento;
+    public void setApartamento(Apartamento apartamento) {
+        this.apartamento.add(apartamento);
     }
 
-    public void setApartamento(Apartamento apartamento) {
-        this.apartamento = apartamento;
+    public void setApartamentos(List<Apartamento> apartementos) {
+        this.apartamento = apartementos;
     }
+
+    public Apartamento getApartamento(int indice) {
+        return this.apartamento.get(indice);
+    }
+
+    public void delApartamento(Apartamento apartamento) {
+        this.apartamento.remove(apartamento);
+    }
+
 }

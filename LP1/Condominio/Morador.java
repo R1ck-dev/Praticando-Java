@@ -4,7 +4,7 @@ public class Morador {
     private String nome;
     private Integer idade;
     private Boolean resp;
-    
+
     public Morador() {
     }
 
@@ -38,5 +38,4 @@ public class Morador {
         this.resp = resp;
     }
 
-    
 }
